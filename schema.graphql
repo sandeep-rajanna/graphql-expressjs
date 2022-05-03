@@ -1,0 +1,118 @@
+"""
+User Object
+"""
+type User {
+  """
+  Unique number for the user.
+  Required
+  """
+  id: Int!
+  """
+  Name of the user
+  Required
+  """
+  name: String!
+  """
+  Email address of the user
+  Required
+  """
+  email: String!
+  """
+  Addresses of the user
+  """
+  addresses: [Address]
+}
+
+"""
+Address Object
+"""
+type Address {
+  """
+  Street name
+  Required
+  """
+  street: String!
+  """
+  City name
+  Required
+  """
+  city: String!
+  """
+  Country name
+  Required
+  """
+  country: String!
+}
+
+type Query {
+  """
+  This query fecthes the user details for the particular userId
+  """
+  getUser(id: Int!): User
+}
+
+type Query {
+  """
+  This query fecthes all the users
+  """
+    users: [User]
+}
+
+type Mutation {
+  """
+  This mutation adds the user
+  """
+  addUser(user: UserInput!): User
+}
+
+"""
+User input for `addUser` mutation
+"""
+input UserInput {
+  """
+  Name of the User
+  Required
+  """
+  name: String!
+  """
+  Email of the User
+  Required
+  """
+  email: String!
+  """
+  Addresses of the User
+  Array should not be empty
+  """
+  addresses: [AddressInput!]
+}
+
+"""
+Address input for `addUser` mutation
+"""
+input AddressInput {
+  """
+  Street Name
+  Required
+  """
+  street: String!
+  """
+  City Name
+  Required
+  """
+  city: String!
+  """
+  Country Name
+  Required
+  """
+  country: String!
+}
+
+query IntrospectionQuery {
+    __schema {
+        types {
+            kind
+            name
+            description
+        }
+    }
+}

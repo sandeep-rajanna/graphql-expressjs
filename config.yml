@@ -1,0 +1,24 @@
+# To fetch schema from
+introspection: http://localhost:5000/graphql
+
+servers: # same format as for OpenAPI Specification
+  - url: http://localhost:5000/graphql
+    description: Local
+
+info: # same format as for OpenAPI Specification
+    title: GraphQL API
+    description: GraphQL API to fetch and update users   
+
+ # define your domains by providing a set of usecases
+domains:
+  - name: User # Name of the domain
+    description: Add and Fetch User details   # Description of the domain
+    usecases:         
+     - name: Fetch lis of Users # Operation name
+       description: Fetch user id, name email # Opearation description
+       query: query.users # Query example - fetching single field
+       select: id name email # select only specific sub fields. By default - all are selected
+       expand: addresses(city, country, street) # go deep by expanding specific fields.
+     - name: Invoke Mutation # Mutation 
+       description: Markdown enabled description for operation
+       query: mutation.addUser # Mutation example - invoke mutation
